@@ -1,0 +1,1 @@
+{"periodic": {"feat_type": "fourier", "lr": 0.05, "param": 3, "weight_init": "random"}, "linear": {"feat_type": "linear", "lr": 1.1, "param": 5, "weight_init": "zeros"}, "poly": {"feat_type": "poly", "lr": 0.021, "param": 4, "weight_init": "zeros"}, "unknown": {"feat_type": "your_own_features", "lr": 8.7e-05, "weight_init": "zeros", "param": 3}}
