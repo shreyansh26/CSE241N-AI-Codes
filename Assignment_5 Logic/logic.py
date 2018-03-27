@@ -244,8 +244,8 @@ class And(BinaryFormula):
         # Hint: Look at function BinaryFormula.flattenArgs() for help.
         #       You may take help from the PDF/Links sent via email.
 
-        listp = And(temp1, TrueConstant).flattenArgs()
-        listq = And(temp2, TrueConstant).flattenArgs()
+        listp = And(TrueConstant, temp1).flattenArgs()
+        listq = And(TrueConstant, temp2).flattenArgs()
         listp.remove(TrueConstant)
         listq.remove(TrueConstant)
         # print(listx)
@@ -304,15 +304,15 @@ class Or(BinaryFormula):
         # Use those to find the CNF of temp1 v temp2.
         # Hint: Look at function BinaryFormula.flattenArgs().
         # (you may take help from the PDF sent via email)
-        listp = And(temp1, TrueConstant).flattenArgs()
-        listq = And(temp2, TrueConstant).flattenArgs()
+        listp = And(TrueConstant, temp1).flattenArgs()
+        listq = And(TrueConstant, temp2).flattenArgs()
         listp.remove(TrueConstant)
         listq.remove(TrueConstant)
 
         listf = []
-        for i in listp:
-            for j in listq:
-                listf.append(Or(i, j))
+        for i in range(len(listp)):
+            for j in range(len(listq)):
+                listf.append(Or(listp[i], listq[j]))
 
         return And.fromList(listf)
 
