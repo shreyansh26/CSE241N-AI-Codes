@@ -106,6 +106,8 @@ def __applyResolution(resList, idx, quiet=False):
         for j in resList:
             if flag == 1:
                 break
+            if i == j:
+                continue
             for k in j:
                 if flag == 1:
                     break
