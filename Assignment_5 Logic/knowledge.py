@@ -16,7 +16,7 @@ def __simplifyORList(orList):
     subList = []
 
     for r in orList:
-        if r not in subList and Not(r).toCNF() not in orList:
+        if r not in subList: # and Not(r).toCNF() not in orList
             subList.append(r)
 
     return subList
