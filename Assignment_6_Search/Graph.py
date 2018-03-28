@@ -42,6 +42,7 @@ class Graph:
             x = prev[x]
 
         path.append(x)
+        path = path[::-1]
         # print(path)
         return path
         #END YOUR CODE HERE
@@ -78,6 +79,7 @@ class Graph:
             x = prev[x]
 
         path.append(x)
+        path = path[::-1]
         # print(path)
         return path
     #END YOUR CODE HERE
