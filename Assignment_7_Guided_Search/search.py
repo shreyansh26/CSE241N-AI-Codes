@@ -69,12 +69,14 @@ def searchHillClimbing(graph, start, goal):
         return {}
     temp = goal
     final_path = {}
-    while temp != start:
+    while temp != None:
         final_path[temp] = came_from[temp]
         temp = came_from[temp]
-    # END HERE #
 
     return final_path
+    # END HERE #
+
+    return came_from
 
 
 def searchBestFirst(graph, start, goal):
@@ -125,12 +127,14 @@ def searchBestFirst(graph, start, goal):
         return {}
     temp = goal
     final_path = {}
-    while temp != start:
+    while temp != None:
         final_path[temp] = came_from[temp]
         temp = came_from[temp]
-    # END HERE #
 
     return final_path
+    # END HERE #
+
+    return came_from
 
 
 
@@ -187,12 +191,14 @@ def searchBeam(graph, start, goal, beam_length=3):
         return {}
     temp = goal
     final_path = {}
-    while temp != start:
+    while temp != None:
         final_path[temp] = came_from[temp]
         temp = came_from[temp]
-    # END HERE #
 
     return final_path
+    # END HERE #
+
+    return came_from
 
 
 def searchAStar(graph, start, goal):
@@ -243,9 +249,11 @@ def searchAStar(graph, start, goal):
         return {}
     temp = goal
     final_path = {}
-    while temp != start:
+    while temp != None:
         final_path[temp] = came_from[temp]
         temp = came_from[temp]
-    # END HERE #
 
     return final_path
+    # END HERE #
+
+    return came_from
