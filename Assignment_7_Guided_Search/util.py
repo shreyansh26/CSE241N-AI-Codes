@@ -4,11 +4,14 @@ util.py: Utility functions.
 
 
 from random import randint, random
+import random as Random
 from math import sqrt
 from graph import *
 
 
+
 def randomGridSearch(maxWidth, maxHeight):
+    #Random.seed(11)
     """
     Generate a random grid with obstacles, along with start and end points.
     """

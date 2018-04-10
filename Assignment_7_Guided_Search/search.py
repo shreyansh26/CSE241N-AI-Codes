@@ -44,7 +44,7 @@ def searchHillClimbing(graph, start, goal):
     # BEGIN HERE #
     if start == goal:
         return [start]
-        
+
     stack = [start]
     ext_list = [start]
 
@@ -57,8 +57,8 @@ def searchHillClimbing(graph, start, goal):
 
         for i in neb:
             if i not in ext_list:
-                heapq.heappush(path, (heuristic(i, goal), i))
                 ext_list.append(i)
+                heapq.heappush(path, (heuristic(i, goal), i))
                 came_from[i] = node
 
         path.reverse()
@@ -181,11 +181,12 @@ def searchBeam(graph, start, goal, beam_length=3):
                 came_from[i] = node
                 # print("Ho")
 
-        length = min(beam_length, len(path))
-        for i in range(length):
-            queue.append(path[i][1])
-            # print("Hi")
-        path[:] = []
+        if len(queue) == 0:
+            length = min(beam_length, len(path))
+            for i in range(length):
+                queue.append(path[i][1])
+                # print("Hi")
+            path[:] = []
 
     if goal not in came_from:
         return {}
