@@ -11,7 +11,7 @@ from graph import *
 
 
 def randomGridSearch(maxWidth, maxHeight):
-    #Random.seed(11)
+    #Random.seed(6)
     """
     Generate a random grid with obstacles, along with start and end points.
     """

@@ -3,6 +3,9 @@ search.py: Search algorithms on grid.
 """
 from collections import deque
 import heapq
+import math
+from functools import reduce
+
 
 def heuristic(a, b):
     """
@@ -54,10 +57,10 @@ def searchHillClimbing(graph, start, goal):
             break
         neb = graph.neighboursOf(node);
         path = []
+        ext_list.append(node)
 
         for i in neb:
             if i not in ext_list:
-                ext_list.append(i)
                 heapq.heappush(path, (heuristic(i, goal), i))
                 came_from[i] = node
 
@@ -177,7 +180,6 @@ def searchBeam(graph, start, goal, beam_length=3):
         for i in neb:
             if i not in ext_list:
                 heapq.heappush(path, (heuristic(goal, i), i))
-                ext_list.append(i)
                 came_from[i] = node
                 # print("Ho")
 
@@ -185,6 +187,7 @@ def searchBeam(graph, start, goal, beam_length=3):
             length = min(beam_length, len(path))
             for i in range(length):
                 queue.append(path[i][1])
+                ext_list.append(path[i][1])
                 # print("Hi")
             path[:] = []
 
@@ -225,26 +228,69 @@ def searchAStar(graph, start, goal):
     came_from[start] = None
 
     # BEGIN HERE #
-    if start == goal:
-        return [start]
+    # if start == goal:
+    #     return [start]
 
-    p_queue = [(heuristic(goal, start)+0, start)]
-    ext_list = [start]
-    dist = {start: 0}
+    # p_queue = [(heuristic(goal, start)+0, start)]
+    # ext_list = [start]
+    # dist = {start: 0}
 
-    while p_queue:
-        node = p_queue.pop(0)[1]
-        if node == goal:
+    # while p_queue:
+    #     node = p_queue.pop(0)[1]
+    #     if node == goal:
+    #         break
+    #     neb = graph.neighboursOf(node);
+    #     path = []
+
+    #     for i in neb:
+    #         if i not in ext_list:
+    #             dist[i] = dist[node] + 1
+    #             heapq.heappush(p_queue, (heuristic(i, goal)+dist[i], i))
+    #             ext_list.append(i)
+    #             came_from[i] = node
+
+    # if goal not in came_from:
+    #     return {}
+    # temp = goal
+    # final_path = {}
+    # while temp != None:
+    #     final_path[temp] = came_from[temp]
+    #     temp = came_from[temp]
+
+    # return final_path
+    INF = math.inf
+
+    ext_list = set()
+    path = set()
+    cur_cost = {}
+    final_cost = {}
+
+    path.add(start)
+    cur_cost[start] = 0
+    final_cost[start] = heuristic(start, goal)
+
+    while len(path):
+        min_ele = reduce(lambda x, y : x if final_cost.get(x, INF) < final_cost.get(y, INF) else y, list(path))
+        
+        if min_ele == goal:
             break
-        neb = graph.neighboursOf(node);
-        path = []
+
+        ext_list.add(min_ele)
+        path.remove(min_ele)
+        
+        neb = graph.neighboursOf(min_ele)
 
         for i in neb:
-            if i not in ext_list:
-                dist[i] = dist[node] + 1
-                heapq.heappush(p_queue, (heuristic(i, goal)+dist[i], i))
-                ext_list.append(i)
-                came_from[i] = node
+            if i in ext_list:
+                continue
+            if i not in path:
+                path.add(i)
+            current = cur_cost.get(min_ele, INF) + heuristic(i, min_ele)
+            if current >= cur_cost.get(i, INF):
+                continue
+            came_from[i] = min_ele
+            cur_cost[i] = current
+            final_cost[i] = cur_cost[i] + heuristic(i, goal)
 
     if goal not in came_from:
         return {}
