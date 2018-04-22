@@ -1,0 +1,60 @@
+                              Assignment 8
+
+----------------------------------------------------------------------------
+         Artificial Intelligence (CSE-241N), IIT (BHU), Varanasi
+                              14th April 2018
+----------------------------------------------------------------------------
+
+In this assignment, you'll be working to implement a fully connected neural network
+model. This model will be used to fit 2D data of spiral points. The fit would be
+visualized. So basically there would be some points in the 2D plane. You would
+have to classify them based on their locations on the 2D plane.
+
+
+Working files:
+-------------
+- You will be restricted to work with 'model.py' and 'main.py'.
+
+
+Files to Submit:
+---------------
+'model.py' and 'model_nn.pkl'. 
+
+
+Scoring:
+-------
+We'll run 'test.py' (included) to test your work on this assignment. You should have a working
+neural network implementation and should have trained this model on the Spiral data.
+We'll not train the network ourselves, instead use the weights provided by you.
+
+
+Data:
+----
+Data is 2D, and is synthetically generated. You can go through 'main.py' for details.
+
+
+Actual Work:
+-----------
+- Work through with 'model.py' and complete some functions.
+- You can check your implementation by running:
+  > python grad_check.py
+- If your implementation is correct, you should proceed to work on 'main.py'.
+- In this file, you'll have to specify the network architecture (number of layers) and
+  the learning rate.
+- Tune your hyperparameters to obtain the best possible precision on classifying the
+  Spiral 2D data.
+- Running 'main.py' would generate a file 'model_nn.pkl', which would contain the trained
+  weights of your neural network.
+
+PS: Although, you only need to work on two functions of model.py, you can edit all functions
+    of that file, as long as you don't change their interface (function arguments and return
+    values) and 'grad_check.py' okays your implementation.
+
+Hint File:
+---------
+There is also a hint.pdf, that contains the mathematical workout for forward pass and
+backpropogation for the neural network. You should consult Section 4 of this file for
+completing 'main.py'.
+
+
+All the best.
